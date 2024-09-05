@@ -14,7 +14,7 @@ websites = [x[0] for x in websites_list]
 
 # Change re.search prompt to match whatever workday company you are looking for
 for index, elem in enumerate(websites):
-    if re.search('amat', elem):
+    if re.search('#Placeholder', elem):
         websites_number = index
 
 
