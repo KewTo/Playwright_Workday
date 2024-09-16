@@ -6,16 +6,11 @@ import re
 
 # List of tuples to match company workday and its corresponding passwords
 websites_list = [
-    ('#website url', '#password'),
-    ('#website url', '#password'),
+    ('#Workday Website', '#Password'),
+    ('#Workday Website', '#Password'),
 ]
 
 websites = [x[0] for x in websites_list]
-
-# Change re.search prompt to match whatever workday company you are looking for
-for index, elem in enumerate(websites):
-    if re.search('#Placeholder', elem):
-        websites_number = index
 
 
 async def main(i):
@@ -29,7 +24,7 @@ async def main(i):
 
         await page.click('text=Sign In')
 
-        await page.fill('input[data-automation-id="email"]', 'kevinto310@gmail.com')
+        await page.fill('input[data-automation-id="email"]', '#Email') #Input email 
         await page.fill('input[data-automation-id="password"]', websites_list[i][1])
 
         time.sleep(1)
@@ -38,7 +33,11 @@ async def main(i):
 
         await page.click('text=Candidate Home')
 
-        await page.pause()
+        time.sleep(10)
+
+        await browser.close()
 
 if __name__ == '__main__':
-    asyncio.run(main(websites_number))
+    for sites in range(0, len(websites_list)):
+        print(websites[sites])
+        asyncio.run(main(sites))
